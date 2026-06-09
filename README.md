@@ -48,7 +48,18 @@ Scanning 8 blog(s)...
 
 ### 3. 搭配 Hermes Agent
 
-将 `monitor.py` 放到 `~/.hermes/scripts/`，然后创建 cron job：
+**方式一：Skill（推荐）**
+
+项目中已附带 `ai-creator-inspiration` skill。用户说"同行最近更新了什么"或"找找灵感"即触发，无需定时。
+
+```bash
+# 安装 skill
+hermes skill install WhiteP1ay/ai-creator-monitor
+```
+
+**方式二：Cron Job**
+
+将 `monitor.py` 放到 `~/.hermes/scripts/`，然后：
 
 ```bash
 hermes cron create \
@@ -58,8 +69,6 @@ hermes cron create \
   --prompt "你是AI博主日报编辑。上方是数据采集输出（YouTube + B站）。请整理为中文日报格式：按平台分组，每人选2-3条，附点评。选出3条今日推荐。" \
   --deliver origin
 ```
-
-每天早上 9:00 自动采集 → 格式化 → 推送到 Telegram。
 
 ## 配置
 
